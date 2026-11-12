@@ -1,0 +1,19 @@
+# Maven / Java build outputs
+**/target/
+*.jar
+*.war
+*.class
+
+# Node / Frontend build outputs
+**/node_modules/
+**/dist/
+.npm/
+
+# Runtime logs & PIDs
+logs/
+*.log
+*.pid
+
+# OS metadata
+.DS_Store
+**/.DS_Store

@@ -1,0 +1,30 @@
+package com.multivendor.userservice.controller;
+
+import com.multivendor.userservice.dto.AuthResponse;
+import com.multivendor.userservice.dto.LoginRequest;
+import com.multivendor.userservice.dto.RegisterRequest;
+import com.multivendor.userservice.service.UserService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+  private final UserService userService;
+
+  public AuthController(UserService userService) {
+    this.userService = userService;
+  }
+
+  @PostMapping("/register")
+  @ResponseStatus(HttpStatus.CREATED)
+  public AuthResponse register(@Valid @RequestBody RegisterRequest request) {
+    return userService.register(request);
+  }
+
+  @PostMapping("/login")
+  public AuthResponse login(@Valid @RequestBody LoginRequest request) {
+    return userService.login(request);
+  }
+}

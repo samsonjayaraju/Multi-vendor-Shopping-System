@@ -1,0 +1,21 @@
+package com.multivendor.orderservice.config;
+
+import feign.Request;
+import feign.RequestInterceptor;
+import java.time.Duration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class FeignConfig {
+  @Bean
+  RequestInterceptor internalKey(@Value("${security.internal-key}") String key) {
+    return template -> template.header("X-Internal-Key", key);
+  }
+
+  @Bean
+  Request.Options timeouts() {
+    return new Request.Options(Duration.ofSeconds(3), Duration.ofSeconds(5), true);
+  }
+}

@@ -40,7 +40,7 @@ if lsof -iTCP:5173 -sTCP:LISTEN -t >/dev/null 2>&1; then
   echo "✓ React frontend is already running on port 5173"
 else
   echo "Starting React frontend on http://localhost:5173 ..."
-  (cd "$ROOT_DIR/frontend" && nohup npm run dev -- --host 0.0.0.0 > "$LOG_DIR/frontend.log" 2>&1 & echo $! > "$LOG_DIR/frontend.pid")
+  (cd "$ROOT_DIR/frontend" && nohup npm run dev -- --host 0.0.0.0 < /dev/null > "$LOG_DIR/frontend.log" 2>&1 & echo $! > "$LOG_DIR/frontend.pid")
 fi
 
 echo ""
